@@ -1,0 +1,7 @@
+".\Objects\STARTUP.obj",
+".\Objects\I2C.obj",
+".\Objects\main.obj",
+".\Objects\SSD1306I2C.obj",
+".\Objects\ADS1110.obj" 
+TO ".\Objects\prj" 
+PRINT(".\Listings\prj.m51") RAMSIZE(256) 

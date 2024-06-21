@@ -1,0 +1,54 @@
+C51 COMPILER V9.59.0.0   ADS1110                                                           05/07/2024 08:54:25 PAGE 1   
+
+
+C51 COMPILER V9.59.0.0, COMPILATION OF MODULE ADS1110
+OBJECT MODULE PLACED IN .\Objects\ADS1110.obj
+COMPILER INVOKED BY: E:\keil\C51\BIN\C51.EXE ADS1110.c LARGE OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listing
+                    -s\ADS1110.lst) TABS(2) OBJECT(.\Objects\ADS1110.obj)
+
+line level    source
+
+   1          #include "ADS1110.h"
+   2          
+   3          void ADS_set(unsigned char config)
+   4          {
+   5   1        I2C_Start();
+   6   1        I2C_SendByte(ADS_address);
+   7   1        I2C_WaitAck(0);
+   8   1        I2C_SendByte(config);
+   9   1        I2C_WaitAck(0);
+  10   1        I2C_Stop();
+  11   1      }
+  12          
+  13          unsigned int ADS_read(void)
+  14          {
+  15   1        unsigned int read=0;
+  16   1        unsigned char config;
+  17   1        
+  18   1        I2C_Start();
+  19   1        I2C_SendByte(ADS_address+1);
+  20   1        I2C_WaitAck(0);
+  21   1        read=I2C_ReadByte()<<8;
+  22   1        I2C_SendAck(0);
+  23   1        read|=I2C_ReadByte();
+  24   1        I2C_SendAck(0);
+  25   1        config=I2C_ReadByte();
+  26   1        I2C_SendAck(0);
+  27   1        I2C_Stop();
+  28   1        
+  29   1        return read;
+  30   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    112    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----       4
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

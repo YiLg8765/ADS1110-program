@@ -1,0 +1,34 @@
+C51 COMPILER V9.59.0.0   ADS1013                                                           04/15/2024 14:37:21 PAGE 1   
+
+
+C51 COMPILER V9.59.0.0, COMPILATION OF MODULE ADS1013
+OBJECT MODULE PLACED IN .\Objects\ADS1013.obj
+COMPILER INVOKED BY: E:\keil\C51\BIN\C51.EXE ADS1013.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\ADS1
+                    -013.lst) TABS(2) OBJECT(.\Objects\ADS1013.obj)
+
+line level    source
+
+   1          #include "ADS1110.h"
+*** WARNING C318 IN LINE 1 OF ADS1013.c: can't open file 'ADS1110.h'
+   2          
+   3          unsigned char ADS_read(unsigned char addr)
+   4          {
+   5   1        unsigned char read;
+   6   1        
+   7   1        I2C_Start();
+*** WARNING C206 IN LINE 7 OF ADS1013.c: 'I2C_Start': missing function-prototype
+   8   1        I2C_SendByte(ADS_address+1);
+*** ERROR C202 IN LINE 8 OF ADS1013.c: 'ADS_address': undefined identifier
+   9   1        I2C_WaitAck(0);
+  10   1        read=I2C_ReadByte();
+  11   1        I2C_SendAck(0);
+  12   1        read=I2C_ReadByte();
+  13   1        I2C_SendAck(0);
+  14   1        read=I2C_ReadByte();
+  15   1        I2C_SendAck(0);
+  16   1        I2C_Stop();
+  17   1        
+  18   1        return read;
+  19   1      }
+
+C51 COMPILATION COMPLETE.  2 WARNING(S),  1 ERROR(S)
